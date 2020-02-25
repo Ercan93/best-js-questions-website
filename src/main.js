@@ -3,10 +3,12 @@ import App from './App.vue'
 import store from "./store/index"
 import router from "./router/index"
 import Vuesax from "vuesax"
-import VueHighlightJS from 'vue-highlightjs'
+import VuePrism from 'vue-prism'
+import 'prismjs/themes/prism.css'
 import 'vuesax/dist/vuesax.css'
+
 Vue.use(Vuesax);
-Vue.use(VueHighlightJS)
+Vue.use(VuePrism)
 
 new Vue({
         el: '#app',
