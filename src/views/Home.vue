@@ -2,7 +2,7 @@
   <div class="container">
     <h3>Hoş Geldiniz</h3>
     <h1 class="text">Javascript'te 100 taktiksel soru!</h1>
-    <vs-button @click="QuestionPage" warn class="start-button">Hadi Başlayalım</vs-button>
+    <vs-button @click="QuestionPage" dark border class="start-button">Hadi Başlayalım</vs-button>
   </div>
 </template>
 <script>
@@ -21,11 +21,11 @@ export default {
 <style scoped>
 .container {
   height: 90vh;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: black;
 }
 .start-button {
   background-color: rgb(255, 230, 0);
@@ -38,5 +38,10 @@ export default {
 .text {
   font-size: 60px;
   margin-bottom: 60px;
+  text-align: center;
+}
+.start-button:hover {
+  background-color: black;
+  color: rgb(255, 230, 0);
 }
 </style>
