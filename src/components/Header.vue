@@ -28,4 +28,14 @@
 .logo-name {
   margin-left: 30px;
 }
+@media screen and (max-width: 550px) {
+  .logo-name {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .menu-item {
+    font-size: 15px;
+    margin: 10px 15px 10px 0;
+  }
+}
 </style>

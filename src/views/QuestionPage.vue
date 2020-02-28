@@ -19,6 +19,7 @@
     </div>
     <div class="solutions">
       <div class="answer" v-if="showAnswer">
+        <h2>Answer</h2>
         <vue-markdown class="answerText" :source="exp"></vue-markdown>
         <vs-button class="next-question" dark border @click="nextQuestion">Next question</vs-button>
       </div>
@@ -89,14 +90,18 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+.answer > h2 {
+  margin-bottom: 20px;
+}
 .language-js {
   background-color: rgb(255, 254, 247);
   border-radius: 10px;
 }
 .showAnswer {
   width: 200px;
-  height: 80px;
-  font-size: 27px;
+  height: 60px;
+  font-size: 25px;
+  font-weight: bold;
   color: black;
   background-color: rgb(255, 230, 0);
 }
@@ -117,6 +122,11 @@ export default {
   background-color: black;
   color: rgb(255, 230, 0);
 }
+.answerText {
+  background-color: rgb(255, 254, 247);
+  padding: 10px;
+  border-radius: 10px;
+}
 .selections {
   display: flex;
   flex-direction: column;
@@ -124,17 +134,33 @@ export default {
 .radio-item {
   margin-right: auto;
 }
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 870px) {
   .container {
     flex-direction: column;
+    background-color: rgb(255, 230, 0);
+    height: 100%;
   }
   .questions {
-    width: 100vw;
-    height: 45vh;
+    width: auto;
+    padding: 20px;
+    height: auto;
   }
   .solutions {
-    width: 100vw;
-    height: 45vh;
+    width: auto;
+    height: auto;
+    padding: 25px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .language-js {
+    font-size: 13px;
+    height: auto;
+  }
+  .showAnswer {
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
   }
 }
 </style>
