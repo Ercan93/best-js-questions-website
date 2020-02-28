@@ -7,7 +7,7 @@
         <div class="selections">
           <vs-radio
             class="radio-item"
-            warn
+            dark
             v-model="picked"
             v-for="(data,index) in selections"
             :val="++index"
@@ -18,7 +18,11 @@
       </div>
     </div>
     <div class="solutions">
-      <vue-markdown :source="exp"></vue-markdown>
+      <div class="answer" v-if="showAnswer">
+        <vue-markdown class="answerText" :source="exp"></vue-markdown>
+        <vs-button class="next-question" dark border @click="nextQuestion">Next question</vs-button>
+      </div>
+      <vs-button class="showAnswer" dark border @click="showAnswerFunc" v-else>Show Answer</vs-button>
     </div>
   </div>
 </template>
@@ -33,8 +37,15 @@ export default {
       picked: 0,
       selections: null,
       header: null,
-      exp: null
+      exp: null,
+      trueAnswer: null,
+      showAnswer: false
     };
+  },
+  methods: {
+    showAnswerFunc() {
+      this.showAnswer = true;
+    }
   },
   mounted() {
     axios
@@ -44,6 +55,7 @@ export default {
         this.sourcecode = response.data.Q1;
         this.header = response.data.Header;
         this.exp = response.data.exp;
+        this.trueAnswer = response.data.trueAnswer;
       });
   }
 };
@@ -52,20 +64,59 @@ export default {
 .container {
   height: 90vh;
   display: flex;
+  line-height: 30px;
+  font-weight: bold;
 }
 .solutions {
-  width: 50vw;
+  width: 60vw;
   height: 90vh;
+  display: flex;
+  padding-right: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .questions {
-  width: 50vw;
+  width: 40vw;
   height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
-
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.language-js {
+  background-color: rgb(255, 254, 247);
+  border-radius: 10px;
+}
+.showAnswer {
+  width: 200px;
+  height: 80px;
+  font-size: 27px;
+  color: black;
+  background-color: rgb(255, 230, 0);
+}
+.showAnswer:hover {
+  background-color: black;
+  color: rgb(255, 230, 0);
+}
+.next-question {
+  margin-top: 50px;
+  width: 150px;
+  height: 50px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: rgb(255, 230, 0);
+  color: black;
+}
+.next-question:hover {
+  background-color: black;
+  color: rgb(255, 230, 0);
+}
 .selections {
   display: flex;
   flex-direction: column;
