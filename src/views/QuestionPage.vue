@@ -69,22 +69,25 @@ export default {
 </script>
 <style scoped>
 .container {
-  height: 90vh;
   display: flex;
   flex-direction: column;
   line-height: 30px;
+  min-height: 90vh;
   font-weight: bold;
+  background-color: rgb(255, 230, 0);
 }
 .solutions {
   display: flex;
-  padding-right: 20px;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 }
 .questions {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin-left: 10vw;
+  padding-top: 30px;
 }
 .answer {
   display: flex;
@@ -118,6 +121,7 @@ export default {
   font-weight: bold;
   background-color: rgb(255, 230, 0);
   color: black;
+  margin-bottom: 30px;
 }
 .next-question:hover {
   background-color: black;
@@ -125,12 +129,14 @@ export default {
 }
 .answerText {
   background-color: rgb(255, 254, 247);
-  padding: 10px;
+  padding: 30px;
   border-radius: 10px;
+  width: 80%;
 }
 .selections {
   display: flex;
   flex-direction: column;
+  margin-left: 60px;
 }
 .radio-item {
   margin-right: auto;
