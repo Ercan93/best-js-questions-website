@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
 import VueMarkdown from "vue-markdown";
 export default {
   components: { VueMarkdown },
@@ -56,12 +56,10 @@ export default {
     },
   },
   computed: {
-    question() {
-      return this.question;
-    },
+    ...mapGetters(["getQuestions"]),
   },
   mounted() {
-    this.questions = this.$store.getters.getQuestions;
+    this.questions = this.getQuestions;
     this.question = this.questions[0];
     this.sourceCode = this.question.sourceCode;
   },
