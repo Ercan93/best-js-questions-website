@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <h1 class="logo-name">JS Questions</h1>
+    <router-link class="router" to="/">
+      <h1 class="logo-name">JS Questions</h1>
+    </router-link>
     <nav class="menu">
-      <a class="menu-item">Profile</a>
+      <a class="menu-item">Profil</a>
+      <a class="menu-item">Hakkında</a>
       <a class="menu-item">Github</a>
-      <a class="menu-item">About</a>
     </nav>
   </div>
 </template>
@@ -17,6 +19,10 @@
   align-items: center;
   border-radius: 0 0 20px 20px;
 }
+.router {
+  text-decoration: none;
+  color: black;
+}
 .menu {
   margin-left: auto;
   display: flex;
@@ -28,6 +34,7 @@
 .logo-name {
   margin-left: 30px;
 }
+
 @media screen and (max-width: 550px) {
   .logo-name {
     font-size: 20px;

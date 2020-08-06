@@ -10,11 +10,11 @@ import navHeader from "./components/Header";
 export default {
   name: "app",
   components: {
-    navHeader
+    navHeader,
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
