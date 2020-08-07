@@ -6,15 +6,18 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {};
   },
   methods: {
+    ...mapActions(["setQuestions"]),
     QuestionPage() {
+      this.setQuestions();
       this.$router.push({ name: "questionPage" });
-    }
-  }
+    },
+  },
 };
 </script>
 

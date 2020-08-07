@@ -13,7 +13,7 @@
           v-for="(data,index) in question.selections"
           :val="++index"
         >
-          <pre class="language-js"><code v-html="data"></code></pre>
+          <pre class="language-js"> <code v-html="data"></code></pre>
         </vs-radio>
       </div>
     </div>
@@ -38,7 +38,6 @@ export default {
       number: 0,
       showAnswer: false,
       question: null,
-      questions: null,
     };
   },
   methods: {
@@ -48,20 +47,19 @@ export default {
     nextQuestion() {
       this.showAnswer = false;
       this.number = this.number + 1;
+      this.picked = 0;
     },
   },
   watch: {
     number(val) {
-      this.question = this.questions[val];
+      this.question = this.getQuestion(val);
     },
   },
   computed: {
-    ...mapGetters(["getQuestions"]),
+    ...mapGetters(["getQuestion"]),
   },
   mounted() {
-    this.questions = this.getQuestions;
-    this.question = this.questions[0];
-    this.sourceCode = this.question.sourceCode;
+    this.question = this.getQuestion(0);
   },
 };
 </script>
