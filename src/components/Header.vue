@@ -17,7 +17,7 @@
   height: 10vh;
   display: flex;
   align-items: center;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 20px;
 }
 .router {
   text-decoration: none;
