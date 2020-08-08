@@ -13,14 +13,14 @@
           v-for="(data,index) in question.selections"
           :val="++index"
         >
-          <pre class="language-js"> <code v-html="data"></code></pre>
+          <vue-simple-markdown class="selection" :source="data"></vue-simple-markdown>
         </vs-radio>
       </div>
     </div>
     <div class="solutions">
       <div class="answer" v-if="showAnswer">
         <h2>Cevap</h2>
-        <vue-markdown class="answerText" :source="question.description"></vue-markdown>
+        <vue-simple-markdown class="answerText" :source="question.description"></vue-simple-markdown>
         <vs-button class="next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
       </div>
       <vs-button class="showAnswer" dark border @click="showAnswerFunc" v-else>Cevabı göster</vs-button>
@@ -29,9 +29,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import VueMarkdown from "vue-markdown";
 export default {
-  components: { VueMarkdown },
   data() {
     return {
       picked: 0,
@@ -82,8 +80,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10vw;
   padding-top: 30px;
+}
+.selection {
+  line-height: 27px;
+  background-color: rgb(255, 254, 247);
+  border-radius: 10px;
+  padding: 10px;
+}
+.radio-item {
+  margin: 10px 0;
 }
 .answer {
   display: flex;
@@ -100,7 +106,7 @@ export default {
 .showAnswer {
   width: 200px;
   height: 60px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   color: black;
   background-color: rgb(255, 230, 0);
@@ -113,7 +119,7 @@ export default {
   margin-top: 50px;
   width: 150px;
   height: 50px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   background-color: rgb(255, 230, 0);
   color: black;
