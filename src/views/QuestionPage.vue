@@ -1,30 +1,39 @@
 <template>
-  <div class="container">
-    <div class="questions">
-      <div class="wrapper">
+  <div class="container grid">
+    <vs-row class="questionList">
+      <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12">
+        <vs-pagination not-arrows v-model="questionPageNum" :length="101" />
+      </vs-col>
+    </vs-row>
+    <vs-row class="questions" justify="center" align="center">
+      <vs-col w="5">
         <h2>{{question.header}}</h2>
-        <pre class="language-js"> <code v-html="question.sourceCode"></code> </pre>
-      </div>
-      <div class="selections">
-        <vs-radio
-          class="radio-item"
-          dark
-          v-model="picked"
-          v-for="(data,index) in question.selections"
-          :val="++index"
-        >
-          <vue-simple-markdown class="selection" :source="data"></vue-simple-markdown>
-        </vs-radio>
-      </div>
-    </div>
-    <div class="solutions">
-      <div class="answer" v-if="showAnswer">
+        <pre class="language-js"><code v-html="question.sourceCode"></code></pre>
+      </vs-col>
+      <vs-col class="selections" w="5">
+        <vs-row direction="column">
+          <vs-radio
+            class="radio-item"
+            dark
+            v-model="picked"
+            v-for="(data,index) in question.selections"
+            :val="++index"
+          >
+            <vue-simple-markdown class="selection" :source="data"></vue-simple-markdown>
+          </vs-radio>
+        </vs-row>
+      </vs-col>
+    </vs-row>
+    <vs-row justify="center" align="center" class="solutions">
+      <vs-col class="answer" justify="center" align="center" v-if="showAnswer" w="10">
         <h2>Cevap</h2>
-        <vue-simple-markdown class="answerText" :source="question.description"></vue-simple-markdown>
+        <vue-simple-markdown class="answer-text" :source="question.description"></vue-simple-markdown>
         <vs-button class="next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
-      </div>
-      <vs-button class="showAnswer" dark border @click="showAnswerFunc" v-else>Cevabı göster</vs-button>
-    </div>
+      </vs-col>
+      <vs-col v-else w="2">
+        <vs-button class="showAnswer" dark border @click="showAnswerFunc">Cevabı göster</vs-button>
+      </vs-col>
+    </vs-row>
   </div>
 </template>
 <script>
@@ -34,6 +43,7 @@ export default {
     return {
       picked: 0,
       number: 0,
+      questionPageNum: 1,
       showAnswer: false,
       question: null,
     };
@@ -51,6 +61,10 @@ export default {
   watch: {
     number(val) {
       this.question = this.getQuestion(val);
+      this.questionPageNum = this.number + 1;
+    },
+    questionPageNum(val) {
+      this.question = this.getQuestion(--val);
     },
   },
   computed: {
@@ -63,24 +77,20 @@ export default {
 </script>
 <style scoped>
 .container {
-  display: flex;
-  flex-direction: column;
   line-height: 30px;
   min-height: 90vh;
   font-weight: bold;
   background-color: rgb(255, 230, 0);
 }
-.solutions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 30px;
+.questionList {
+  margin: 20px 0;
 }
-.questions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 30px;
+.questions,
+.solutions {
+  padding: 30px;
+}
+.selections {
+  margin-left: 60px;
 }
 .selection {
   line-height: 27px;
@@ -90,11 +100,6 @@ export default {
 }
 .radio-item {
   margin: 10px 0;
-}
-.answer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .answer > h2 {
   margin-bottom: 20px;
@@ -129,35 +134,18 @@ export default {
   background-color: black;
   color: rgb(255, 230, 0);
 }
-.answerText {
-  background-color: rgb(255, 254, 247);
+.answer-text {
+  width: 80%;
   padding: 30px;
   border-radius: 10px;
-  width: 80%;
+  background-color: rgb(255, 254, 247);
 }
-.selections {
-  display: flex;
-  flex-direction: column;
-  margin-left: 60px;
-}
-.radio-item {
-  margin-right: auto;
-}
+
 @media screen and (max-width: 870px) {
   .container {
     flex-direction: column;
     background-color: rgb(255, 230, 0);
     height: 100%;
-  }
-  .questions {
-    width: auto;
-    padding: 20px;
-    height: auto;
-  }
-  .solutions {
-    width: auto;
-    height: auto;
-    padding: 25px;
   }
 }
 @media screen and (max-width: 380px) {
