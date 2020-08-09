@@ -2,7 +2,14 @@
   <div class="container grid">
     <vs-row class="questionList">
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12">
-        <vs-pagination not-arrows v-model="questionPageNum" :length="101" />
+        <vs-pagination
+          circle
+          class="page-num"
+          max="20"
+          color="rgb(255, 130, 0)"
+          v-model="questionPageNum"
+          :length="101"
+        />
       </vs-col>
     </vs-row>
     <vs-row class="questions" justify="center" align="center">
@@ -14,8 +21,8 @@
         <vs-row direction="column">
           <vs-radio
             class="radio-item"
-            dark
             v-model="picked"
+            color="rgb(255, 130, 0)"
             v-for="(data,index) in question.selections"
             :val="++index"
           >
@@ -28,10 +35,10 @@
       <vs-col class="answer" justify="center" align="center" v-if="showAnswer" w="10">
         <h2>Cevap</h2>
         <vue-simple-markdown class="answer-text" :source="question.description"></vue-simple-markdown>
-        <vs-button class="next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
+        <vs-button class="btn next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
       </vs-col>
       <vs-col v-else w="2">
-        <vs-button class="showAnswer" dark border @click="showAnswerFunc">Cevabı göster</vs-button>
+        <vs-button class="btn showAnswer" dark border @click="showAnswerFunc">Cevabı göster</vs-button>
       </vs-col>
     </vs-row>
   </div>
@@ -80,7 +87,7 @@ export default {
   line-height: 30px;
   min-height: 90vh;
   font-weight: bold;
-  background-color: rgb(255, 230, 0);
+  background-color: var(--dark);
 }
 .questionList {
   margin: 20px 0;
@@ -89,62 +96,47 @@ export default {
 .solutions {
   padding: 30px;
 }
+.page-num {
+  background-color: var(--success);
+}
 .selections {
   margin-left: 60px;
 }
 .selection {
   line-height: 27px;
-  background-color: rgb(255, 254, 247);
-  border-radius: 10px;
-  padding: 10px;
 }
 .radio-item {
   margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--white);
 }
 .answer > h2 {
   margin-bottom: 20px;
 }
 .language-js {
-  background-color: rgb(255, 254, 247);
+  background-color: var(--white);
   border-radius: 10px;
 }
-.showAnswer {
+.showAnswer,
+.next-question {
   width: 200px;
   height: 60px;
   font-size: 20px;
   font-weight: bold;
-  color: black;
-  background-color: rgb(255, 230, 0);
-}
-.showAnswer:hover {
-  background-color: black;
-  color: rgb(255, 230, 0);
-}
-.next-question {
-  margin-top: 50px;
-  width: 150px;
-  height: 50px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: rgb(255, 230, 0);
-  color: black;
-  margin-bottom: 30px;
-}
-.next-question:hover {
-  background-color: black;
-  color: rgb(255, 230, 0);
+  color: white;
+  background-color: var(--warning);
 }
 .answer-text {
   width: 80%;
   padding: 30px;
   border-radius: 10px;
-  background-color: rgb(255, 254, 247);
+  background-color: var(--white);
 }
 
 @media screen and (max-width: 870px) {
   .container {
     flex-direction: column;
-    background-color: rgb(255, 230, 0);
     height: 100%;
   }
 }
