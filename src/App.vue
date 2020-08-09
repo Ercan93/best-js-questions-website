@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <nav-header></nav-header>
+    <app-header></app-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import navHeader from "./components/Header";
+import appHeader from "./components/Header";
 export default {
   name: "app",
   components: {
-    navHeader,
+    appHeader,
   },
   data() {
     return {};
@@ -42,7 +42,7 @@ export default {
   color: var(--success);
 }
 .btn:hover {
-  color: var(--yellow);
+  color: var(--white);
   box-shadow: 3px 3px white;
 }
 </style>

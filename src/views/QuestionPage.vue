@@ -33,7 +33,7 @@
     </vs-row>
     <vs-row justify="center" align="center" class="solutions">
       <vs-col class="answer" justify="center" align="center" v-if="showAnswer" w="10">
-        <h2>Cevap</h2>
+        <h2>Açıklama</h2>
         <vue-simple-markdown class="answer-text" :source="question.description"></vue-simple-markdown>
         <vs-button class="btn next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
       </vs-col>
@@ -124,7 +124,8 @@ export default {
   height: 60px;
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  margin-top: 20px;
+  color: var(--white);
   background-color: var(--warning);
 }
 .answer-text {

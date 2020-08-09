@@ -42,7 +42,4 @@ export default {
   margin-bottom: 60px;
   text-align: center;
 }
-.start-button:hover {
-  box-shadow: 3px 3px var(--white);
-}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <header class="container">
     <router-link class="router" to="/">
       <h1 class="logo-name">JS Questions</h1>
     </router-link>
@@ -8,12 +8,11 @@
       <a class="menu-item">Hakkında</a>
       <a class="menu-item">Github</a>
     </nav>
-  </div>
+  </header>
 </template>
 
 <style scoped>
 .container {
-  background-color: rgb(255, 230, 0);
   height: 10vh;
   display: flex;
   align-items: center;
@@ -21,7 +20,7 @@
 }
 .router {
   text-decoration: none;
-  color: black;
+  color: var(--js-yellow);
 }
 .menu {
   margin-left: auto;
