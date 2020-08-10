@@ -7,7 +7,7 @@
           circle
           progress
           :max="15"
-          color="rgb(255, 130, 0)"
+          color="rgb(242, 19, 93)"
           v-model="questionPageNum"
           :length="101"
         />
@@ -23,9 +23,10 @@
           <vs-radio
             class="radio-item"
             v-model="picked"
-            color="rgb(255, 130, 0)"
+            color="#5b3cc4"
             v-for="(data,index) in question.selections"
             :val="++index"
+            :key="++index"
           >
             <vue-simple-markdown class="selection" :source="data"></vue-simple-markdown>
           </vs-radio>
@@ -36,10 +37,10 @@
       <vs-col class="answer" justify="center" align="center" v-if="showAnswer" w="10">
         <h2>Açıklama</h2>
         <vue-simple-markdown class="answer-text" :source="question.description"></vue-simple-markdown>
-        <vs-button class="btn next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
+        <vs-button class="btn next-question" dark @click="nextQuestion">Sonraki Soru</vs-button>
       </vs-col>
       <vs-col v-else w="2">
-        <vs-button class="btn showAnswer" dark border @click="showAnswerSection">Cevabı göster</vs-button>
+        <vs-button class="btn showAnswer" dark @click="showAnswerSection">Cevabı göster</vs-button>
       </vs-col>
     </vs-row>
   </div>
@@ -63,10 +64,13 @@ export default {
     nextQuestion() {
       this.showAnswer = false;
       this.number = this.number + 1;
-      this.picked = 0;
+      this.resetPicked();
     },
     getQuestionFromStore(questionNum) {
       this.question = this.getQuestion(questionNum);
+    },
+    resetPicked() {
+      this.picked = 0;
     },
   },
   watch: {
@@ -76,6 +80,7 @@ export default {
     },
     questionPageNum(val) {
       this.getQuestionFromStore(--val);
+      this.resetPicked();
     },
   },
   computed: {
@@ -101,7 +106,8 @@ export default {
   padding: 30px;
 }
 .page-num {
-  background-color: var(--success);
+  background-color: var(--green);
+  color: var(--red);
 }
 .selections {
   margin-left: 60px;
@@ -130,7 +136,7 @@ export default {
   font-weight: bold;
   margin-top: 20px;
   color: var(--white);
-  background-color: var(--warning);
+  background-color: var(--red);
 }
 .answer-text {
   width: 80%;
