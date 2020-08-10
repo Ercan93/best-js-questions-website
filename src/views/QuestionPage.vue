@@ -3,9 +3,10 @@
     <vs-row class="questionList">
       <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12">
         <vs-pagination
-          circle
           class="page-num"
-          max="20"
+          circle
+          progress
+          :max="15"
           color="rgb(255, 130, 0)"
           v-model="questionPageNum"
           :length="101"
@@ -38,7 +39,7 @@
         <vs-button class="btn next-question" dark border @click="nextQuestion">Sonraki Soru</vs-button>
       </vs-col>
       <vs-col v-else w="2">
-        <vs-button class="btn showAnswer" dark border @click="showAnswerFunc">Cevabı göster</vs-button>
+        <vs-button class="btn showAnswer" dark border @click="showAnswerSection">Cevabı göster</vs-button>
       </vs-col>
     </vs-row>
   </div>
@@ -56,7 +57,7 @@ export default {
     };
   },
   methods: {
-    showAnswerFunc() {
+    showAnswerSection() {
       this.showAnswer = true;
     },
     nextQuestion() {
@@ -64,21 +65,24 @@ export default {
       this.number = this.number + 1;
       this.picked = 0;
     },
+    getQuestionFromStore(questionNum) {
+      this.question = this.getQuestion(questionNum);
+    },
   },
   watch: {
     number(val) {
-      this.question = this.getQuestion(val);
+      this.getQuestionFromStore(val);
       this.questionPageNum = this.number + 1;
     },
     questionPageNum(val) {
-      this.question = this.getQuestion(--val);
+      this.getQuestionFromStore(--val);
     },
   },
   computed: {
     ...mapGetters(["getQuestion"]),
   },
   mounted() {
-    this.question = this.getQuestion(0);
+    this.getQuestionFromStore(this.number);
   },
 };
 </script>
