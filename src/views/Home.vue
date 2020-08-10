@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <h3>Hoş Geldiniz</h3>
-    <h1 class="text">Javascript'te 100 taktiksel soru!</h1>
-    <vs-button @click="QuestionPage" dark border class="btn start-button">Hadi Başlayalım</vs-button>
+    <h1 class="text">
+      Javascript'te 101
+      <br />
+      <span class="tactic">taktiksel</span> soru!
+    </h1>
+    <vs-button @click="QuestionPage" dark class="btn start-button">Hadi Başlayalım</vs-button>
   </div>
 </template>
 <script>
@@ -30,16 +33,19 @@ export default {
   justify-content: center;
 }
 .start-button {
-  background-color: var(--warning);
+  background-color: var(--red);
   color: var(--white);
-  height: 70px;
-  width: 180px;
-  font-size: 20px;
+  font-size: 25px;
+  padding: 10px;
   font-weight: bold;
 }
 .text {
   font-size: 60px;
   margin-bottom: 60px;
   text-align: center;
+}
+.tactic {
+  background-color: var(--green);
+  color: var(--dark);
 }
 </style>

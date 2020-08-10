@@ -22,10 +22,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap");
 :root {
   --yellow: rgb(255, 230, 0);
-  --primary: #5b3cc4;
-  --success: rgb(23, 201, 100);
-  --danger: rgb(242, 19, 93);
-  --warning: rgb(255, 130, 0);
+  --purple: #5b3cc4;
+  --green: rgb(23, 201, 100);
+  --red: rgb(242, 19, 93);
+  --orange: rgb(255, 130, 0);
   --dark: rgb(36, 33, 69);
   --white: rgb(255, 254, 247);
 }
@@ -39,7 +39,7 @@ export default {
 
 #app {
   background-color: var(--dark);
-  color: var(--success);
+  color: var(--green);
 }
 .btn:hover {
   color: var(--white);
