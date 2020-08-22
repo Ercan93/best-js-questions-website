@@ -16,11 +16,10 @@
   height: 10vh;
   display: flex;
   align-items: center;
-  border-radius: 0 20px;
 }
 .router {
   text-decoration: none;
-  color: var(--js-yellow);
+  color: var(--green);
 }
 .menu {
   margin-left: auto;
