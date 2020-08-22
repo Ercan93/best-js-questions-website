@@ -64,12 +64,25 @@ export default {
     this.getQuestionFromStore(this.number);
   },
   methods: {
+    setRadiosBgColor(color) {
+      let answer = this.question.trueAnswer;
+      let picked = this.picked;
+
+      if (answer == picked) {
+        $(`.radio-item-${picked}`).css("backgroundColor", color[0]);
+      } else {
+        $(`.radio-item-${picked}`).css("backgroundColor", color[1]);
+        $(`.radio-item-${answer}`).css("backgroundColor", color[0]);
+      }
+    },
     showAnswerSection() {
       this.showAnswer = true;
+      this.setRadiosBgColor(["var(--green)", "var(--red)"]);
     },
     nextQuestion() {
       this.showAnswer = false;
       this.number = this.number + 1;
+      this.setRadiosBgColor(["var(--white)", "var(--white)"]);
       this.resetPicked();
     },
     getQuestionFromStore(questionNum) {
