@@ -21,12 +21,12 @@
       <vs-col class="selections" w="5">
         <vs-row direction="column">
           <vs-radio
-            class="radio-item"
+            :class="`radio-item radio-item-${index}`"
             v-model="picked"
             color="#5b3cc4"
             v-for="(data,index) in question.selections"
-            :val="++index"
-            :key="++index"
+            :val="index"
+            :key="index"
           >
             <vue-simple-markdown class="selection" :source="data"></vue-simple-markdown>
           </vs-radio>
@@ -50,12 +50,18 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      picked: 0,
+      picked: -1,
       number: 0,
       questionPageNum: 1,
       showAnswer: false,
       question: null,
     };
+  },
+  computed: {
+    ...mapGetters(["getQuestion"]),
+  },
+  mounted() {
+    this.getQuestionFromStore(this.number);
   },
   methods: {
     showAnswerSection() {
@@ -70,7 +76,7 @@ export default {
       this.question = this.getQuestion(questionNum);
     },
     resetPicked() {
-      this.picked = 0;
+      this.picked = -1;
     },
   },
   watch: {
@@ -82,12 +88,6 @@ export default {
       this.getQuestionFromStore(--val);
       this.resetPicked();
     },
-  },
-  computed: {
-    ...mapGetters(["getQuestion"]),
-  },
-  mounted() {
-    this.getQuestionFromStore(this.number);
   },
 };
 </script>
